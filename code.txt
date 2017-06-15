@@ -1,0 +1,190 @@
+//menambahkan library untuk mengenali object yg akan digunakan
+//untuk menampilkan data
+import Utility.Koneksi;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+
+//membuat header pada tabel dan pemanggilan class
+String header[]={"Kode Customer","Nama Customer","No Telepon","Keterangan"};
+    Connection con;
+    Statement st;
+    Koneksi kon=new Koneksi();
+    private DefaultTableModel tabMode;
+    String query;
+
+
+//menampilkan isi dari tabel
+private void tampilDataTabel(){
+removeTable();
+try{
+       con=kon.open();
+       st=con.createStatement();
+       query="SELECT * FROM tb_cust";
+       ResultSet rs=st.executeQuery(query);
+       while(rs.next()){
+            String a=rs.getString("kd_cust");
+            String b=rs.getString("nama_cust");
+            String c=rs.getString("no_tlp");
+            String d=rs.getString("ket");
+                
+            String data []={a,b,c,d};
+            tabMode.addRow(data);
+       }
+            
+       }catch(SQLException sqle){
+           JOptionPane.showMessageDialog(null,"Failed show data! "+sqle);
+            
+    }
+}
+//continue
+public void removeTable() {
+   try{
+       for(int t=tabMode.getRowCount();t>0;t--){tabMode.removeRow(0);}            
+   }
+   catch(Exception ex){System.out.println(ex);}
+}
+
+
+//untuk memanggil void tampilDataTabel
+private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {                                         
+   tampilDataTabel();
+}  
+
+
+//untuk keluar dari frame
+private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {                                         
+   System.exit(0);
+}  
+
+// pada jTable1 klik kanan Customized Code
+tabMode=new DefaultTableModel(null,header);
+jTable1.setModel(tabMode);
+
+
+//kode untuk properties komponen
+void Aktif(){
+   txtKodeCust.setEditable(true);
+   txtNamaCust.setEditable(true);
+   txtNoTlp.setEditable(true);
+   txtKet.setEditable(true);
+   txtKodeCust.requestFocus();
+}
+
+//continue
+void TidakAktif(){
+    txtKodeCust.setEditable(false);
+    txtNamaCust.setEditable(false);
+    txtNoTlp.setEditable(false);
+    txtKet.setEditable(false);
+    btnSave.setEnabled(false);
+    btnUpdate.setEnabled(false);
+    btnDelete.setEnabled(false);
+}
+
+//continue
+void New(){
+    Aktif();
+    btnSave.setEnabled(true);
+}
+
+
+//Simpan data
+void save(){
+     try{
+     kon.QUERY("INSERT INTO tb_cust (kd_cust,nama_cust,no_tlp,ket) VALUES ('"+txtKodeCust.getText()+"','"+txtNamaCust.getText()+"','"+txtNoTlp.getText()+"','"+txtKet.getText()+"')","saved");        
+        tampilDataTabel();
+        ClearText();
+    }catch(Exception sqle){
+    JOptionPane.showMessageDialog(rootPane,"Failed saved data! "+sqle.getMessage());
+    }
+}
+
+
+//kode untuk ubah data
+void Update(){
+   try{
+                
+        kon.QUERY("UPDATE tb_cust SET nama_cust='"+txtNamaCust.getText()+"',no_tlp='"+txtNoTlp.getText()+"',ket='"+txtKet.getText()+"' WHERE kd_cust='"+txtKodeCust.getText()+"'","updated");
+        tampilDataTabel();
+        ClearText();
+   }catch(Exception sqle){
+            
+   JOptionPane.showMessageDialog(rootPane,"Failed updated data! "+sqle.getMessage());
+   }
+}
+
+
+//kode untuk hapus data
+void Delete(){
+   try{
+       kon.QUERY ("DELETE FROM tb_cust WHERE kd_cust='"+txtKodeCust.getText()+"' ","deleted");
+       tampilDataTabel();
+       ClearText();
+   }catch(Exception sqle){          
+       JOptionPane.showMessageDialog(rootPane, "Failed deleted data! "+sqle.getMessage());
+   }
+}
+
+
+//kode untuk cari data
+void Search(){
+   removeTable();            
+   try{                
+       con=kon.open();
+       st=con.createStatement();
+       query="SELECT * FROM tb_cust WHERE "+cmbCari.getSelectedItem()+" LIKE '%"+txtSearch.getText()+"%' ";
+       ResultSet rs=st.executeQuery(query);               
+       while(rs.next()){                  
+           String skd_cust =rs.getString("kd_cust");
+           String snama_cust =rs.getString("nama_cust");
+           String sno_tlp =rs.getString("no_tlp");
+           String sket =rs.getString("ket");     
+           txtKodeCust.setText(skd_cust);
+           txtNamaCust.setText(snama_cust);
+           txtNoTlp.setText(sno_tlp);
+           txtKet.setText(sket);
+                  
+           String data []={skd_cust,snama_cust,sno_tlp,sket};
+           tabMode.addRow(data);                   
+        }
+     }catch(SQLException sqle){
+           JOptionPane.showMessageDialog(null, "Failed show data! "+sqle.getMessage());
+     }
+}
+
+
+//kode untuk membersihkan text
+void ClearText(){
+   txtKodeCust.setText("");
+   txtNamaCust.setText("");
+   txtNoTlp.setText("");
+   txtKet.setText("");
+   txtKodeCust.requestFocus();
+   btnUpdate.setEnabled(false);
+   btnDelete.setEnabled(false);
+   btnSave.setEnabled(false);
+}
+
+
+//kode untuk menampilkan data dari tabel frame ke text
+void ShowDataTabelKeText(){
+   txtKodeCust.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0)));
+   txtNamaCust.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),1)));
+   txtNoTlp.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),2)));
+   txtKet.setText(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),3)));
+     
+   txtKodeCust.setEditable(false);
+   txtNamaCust.setEditable(true);
+   txtNoTlp.setEditable(true);
+   txtKet.setEditable(true);
+   txtNamaCust.requestFocus();
+            
+   btnUpdate.setEnabled(true);
+   btnDelete.setEnabled(true);
+}
+

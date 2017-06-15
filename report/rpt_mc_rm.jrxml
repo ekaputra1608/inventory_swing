@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_mc_rm" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5da67183-56a8-4c74-ae4c-d6ffff3b1ac8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mc_rm" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     tb_mc_rm.`kd_mc_rm` AS tb_mc_rm_kd_mc_rm,
+     tb_mc_rm.`tgl_cetak` AS tb_mc_rm_tgl_cetak,
+     tb_mc_rm.`kd_produk` AS tb_mc_rm_kd_produk,
+     tb_mc_rm.`jml_produk` AS tb_mc_rm_jml_produk,
+     tb_mc_rm.`kd_mesin` AS tb_mc_rm_kd_mesin,
+     tb_mc_rm.`jml_mesin` AS tb_mc_rm_jml_mesin,
+     tb_mc_rm.`kd_pekerja1` AS tb_mc_rm_kd_pekerja1,
+     tb_mc_rm.`jml_pekerja1` AS tb_mc_rm_jml_pekerja1,
+     tb_mc_rm_detail.`kd_mc_rm` AS tb_mc_rm_detail_kd_mc_rm,
+     tb_mc_rm_detail.`kd_rm` AS tb_mc_rm_detail_kd_rm,
+     tb_mc_rm_detail.`jml_rm` AS tb_mc_rm_detail_jml_rm,
+     tb_mc_rm_detail.`subtotal` AS tb_mc_rm_detail_subtotal,
+     tb_bom.`kd_produk` AS tb_bom_kd_produk,
+     tb_bom.`nama_produk` AS tb_bom_nama_produk,
+     tb_bom.`satuan` AS tb_bom_satuan,
+     tb_bom.`id_bom` AS tb_bom_id_bom,
+     tb_master_rm.`nama_rm` AS tb_master_rm_nama_rm,
+     tb_master_rm.`satuan` AS tb_master_rm_satuan,
+     tb_master_rm.`harga_rm` AS tb_master_rm_harga_rm,
+     tb_pekerja.`nama_pekerja` AS tb_pekerja_nama_pekerja,
+     tb_mesin.`nama_mesin` AS tb_mesin_nama_mesin,
+     tb_mesin.`harga_satuan` AS tb_mesin_harga_satuan,
+     tb_pekerja.`harga_satuan` AS tb_pekerja_harga_satuan
+FROM
+     `tb_mc_rm` tb_mc_rm INNER JOIN `tb_bom` tb_bom ON tb_mc_rm.`kd_produk` = tb_bom.`kd_produk`
+     INNER JOIN `tb_mc_rm_detail` tb_mc_rm_detail ON tb_mc_rm.`kd_mc_rm` = tb_mc_rm_detail.`kd_mc_rm`
+     INNER JOIN `tb_pekerja` tb_pekerja ON tb_mc_rm.`kd_pekerja1` = tb_pekerja.`kd_pekerja`
+     INNER JOIN `tb_mesin` tb_mesin ON tb_mc_rm.`kd_mesin` = tb_mesin.`kd_mesin`
+     INNER JOIN `tb_master_rm` tb_master_rm ON tb_mc_rm_detail.`kd_rm` = tb_master_rm.`kd_rm`
+WHERE
+     tb_mc_rm.`kd_mc_rm` = $P{mc_rm}]]>
+	</queryString>
+	<field name="tb_mc_rm_kd_mc_rm" class="java.lang.String"/>
+	<field name="tb_mc_rm_tgl_cetak" class="java.sql.Date"/>
+	<field name="tb_mc_rm_kd_produk" class="java.lang.String"/>
+	<field name="tb_mc_rm_jml_produk" class="java.lang.Float"/>
+	<field name="tb_mc_rm_kd_mesin" class="java.lang.String"/>
+	<field name="tb_mc_rm_jml_mesin" class="java.lang.Integer"/>
+	<field name="tb_mc_rm_kd_pekerja1" class="java.lang.String"/>
+	<field name="tb_mc_rm_jml_pekerja1" class="java.lang.Integer"/>
+	<field name="tb_mc_rm_detail_kd_mc_rm" class="java.lang.String"/>
+	<field name="tb_mc_rm_detail_kd_rm" class="java.lang.String"/>
+	<field name="tb_mc_rm_detail_jml_rm" class="java.lang.Double"/>
+	<field name="tb_mc_rm_detail_subtotal" class="java.lang.Double"/>
+	<field name="tb_bom_kd_produk" class="java.lang.String"/>
+	<field name="tb_bom_nama_produk" class="java.lang.String"/>
+	<field name="tb_bom_satuan" class="java.lang.String"/>
+	<field name="tb_bom_id_bom" class="java.lang.String"/>
+	<field name="tb_master_rm_nama_rm" class="java.lang.String"/>
+	<field name="tb_master_rm_satuan" class="java.lang.String"/>
+	<field name="tb_master_rm_harga_rm" class="java.lang.Integer"/>
+	<field name="tb_pekerja_nama_pekerja" class="java.lang.String"/>
+	<field name="tb_mesin_nama_mesin" class="java.lang.String"/>
+	<field name="tb_mesin_harga_satuan" class="java.lang.Float"/>
+	<field name="tb_pekerja_harga_satuan" class="java.lang.Float"/>
+	<group name="tambahan" keepTogether="true">
+		<groupFooter>
+			<band height="105">
+				<line>
+					<reportElement uuid="e58dbd85-5cb6-4b99-b54c-0cc529f7fbce" x="61" y="20" width="654" height="1"/>
+					<graphicElement>
+						<pen lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="e58dbd85-5cb6-4b99-b54c-0cc529f7fbce" x="60" y="61" width="654" height="1"/>
+					<graphicElement>
+						<pen lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="e58dbd85-5cb6-4b99-b54c-0cc529f7fbce" x="61" y="104" width="654" height="1"/>
+					<graphicElement>
+						<pen lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement uuid="9c408323-9368-441b-94cf-81fc4520d121" x="161" y="0" width="188" height="20"/>
+					<textElement>
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<text><![CDATA[Total Value ...............................................]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="3fd0fd31-e64e-42eb-aedd-4fd7c82027fe" x="61" y="21" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_mc_rm_kd_mesin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="45d59cea-0c6f-4ae1-a7b6-43dc6e8eed73" x="161" y="20" width="188" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_mesin_nama_mesin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="bba37a65-b00f-4ba4-984a-cca6aac604e1" x="549" y="21" width="66" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_mesin_harga_satuan}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="166302eb-63e5-4c52-b5f3-39b834fd09e9" x="449" y="21" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_mc_rm_jml_mesin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="3bfa754f-389e-4f0d-bba0-974760a54668" x="61" y="62" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_mc_rm_kd_pekerja1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="be22c54b-a6b9-4a2f-8f72-3204812e2560" x="161" y="62" width="188" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_pekerja_nama_pekerja}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="b627976c-36e6-4f48-99b7-389ef84a5f93" x="449" y="61" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_mc_rm_jml_pekerja1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="5a6e1475-5018-4fe9-9005-27ba62734d4a" x="549" y="62" width="66" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tb_pekerja_harga_satuan}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="9c408323-9368-441b-94cf-81fc4520d121" x="161" y="40" width="188" height="20"/>
+					<textElement/>
+					<text><![CDATA[Total Value ...............................................]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="9c408323-9368-441b-94cf-81fc4520d121" x="160" y="84" width="188" height="20"/>
+					<textElement/>
+					<text><![CDATA[Total Value ...............................................]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="199" y="10" width="200" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MC VALUE TAHUN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="0" y="10" width="161" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PT Cedefindo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bd9cfe67-1378-4877-9f9b-20e8e8f4b11a" x="449" y="10" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[EXIST]]></text>
+			</staticText>
+			<textField pattern="yyyy">
+				<reportElement uuid="dba775c6-c3de-4dd6-93d8-b9ccb77adf23" x="399" y="10" width="50" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9e5573d6-be5c-4902-aab4-edf6d7e59ba4" x="640" y="10" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_rm_kd_mc_rm}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="101" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="199" y="74" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Batch Kemas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="199" y="54" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Batch Proses]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="199" y="14" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kode Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="199" y="34" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="412" y="14" width="64" height="20"/>
+				<textElement/>
+				<text><![CDATA[No. Formula:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="299" y="14" width="7" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="299" y="34" width="7" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="299" y="54" width="7" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="299" y="74" width="7" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b1feec02-4e1a-40bb-9359-f6c624d55510" x="306" y="14" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_rm_kd_produk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="93387e84-23d8-4cf0-8ac3-8c1b0df555db" x="306" y="34" width="170" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_bom_nama_produk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b46b1a7e-123e-4b65-8908-68b4e4330c5b" x="476" y="14" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_bom_id_bom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1ba7f1c4-7241-4ef5-a653-dee4d0ddabf2" x="306" y="54" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_rm_jml_produk}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d9ce66fa-9f4a-4833-8a6e-b517bfea5791" x="306" y="74" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[-]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d85b9215-f0d4-4b8d-a780-3fdc96884eff" x="60" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b73368c1-7ed4-4103-ad84-d555de93190a" x="160" y="0" width="189" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama Bahan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="08025866-0a8e-42ac-a39b-7d3fc7ea0047" x="449" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jml in Pcs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b799e6fd-70bb-47a0-bfde-6438af5451a6" x="549" y="0" width="66" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Harga Satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="06468c50-9ba3-48ca-862e-9eaf3487ae7d" x="615" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Value In Batch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="08025866-0a8e-42ac-a39b-7d3fc7ea0047" x="349" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sat.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="c6de21f0-1e36-426b-9f42-25f40f10e9d8" x="60" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_mc_rm_detail_kd_rm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="09ea4c3d-9ce8-4dd7-89bd-81ae515325e1" x="161" y="0" width="188" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_master_rm_nama_rm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f7816c48-7da3-47fe-b918-4981c1af7732" x="349" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_master_rm_satuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e17de6cf-ad83-4dd9-b4bb-b9b93cff5fd6" x="449" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_mc_rm_detail_jml_rm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8a9e18c2-be06-4fcd-9d51-b98b8d5776e9" x="549" y="0" width="66" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_master_rm_harga_rm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="43972a8b-9ede-4d6c-87fc-0a5b5871671e" x="615" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_mc_rm_detail_subtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement uuid="0f5029ab-0d6a-416a-b989-65b3ac4ddc9b" x="702" y="24" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

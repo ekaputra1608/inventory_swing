@@ -1,0 +1,608 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.9.2
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jan 17, 2014 at 07:50 AM
+-- Server version: 5.0.67
+-- PHP Version: 5.2.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `appinv`
+--
+CREATE DATABASE `appinv` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `appinv`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_bom`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_bom` (
+  `id_bom` char(10) NOT NULL,
+  `kd_produk` char(15) NOT NULL,
+  `nama_produk` varchar(50) NOT NULL,
+  `satuan` varchar(3) NOT NULL,
+  `jns_produk` varchar(10) NOT NULL,
+  `proses` varchar(4) NOT NULL,
+  `kd_mesin` char(15) NOT NULL,
+  `kd_pekerja1` char(15) NOT NULL,
+  `jml_mesin` int(2) NOT NULL,
+  `jml_pekerja1` int(2) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_bom`
+--
+
+INSERT INTO `tb_bom` (`id_bom`, `kd_produk`, `nama_produk`, `satuan`, `jns_produk`, `proses`, `kd_mesin`, `kd_pekerja1`, `jml_mesin`, `jml_pekerja1`) VALUES
+('1', '5544CWBE0600', 'BULK EYE SHADOW 06 CWP', 'KG', 'EYE SHADOW', 'BULK', 'CDF01MK', 'MAN01MP', 2, 30),
+('2', '122312', 'wdssdasdda', 'KG', 'EYE SHADOW', 'BULK', 'CDF01MK', 'MAN01MP', 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_bom_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_bom_detail` (
+  `no_urut` int(11) NOT NULL auto_increment,
+  `id_bom` varchar(10) NOT NULL,
+  `kd_rm` varchar(10) NOT NULL,
+  `qty` decimal(10,3) NOT NULL,
+  PRIMARY KEY  (`no_urut`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `tb_bom_detail`
+--
+
+INSERT INTO `tb_bom_detail` (`no_urut`, `id_bom`, `kd_rm`, `qty`) VALUES
+(1, '1', 'BS 0132', 0.030),
+(2, '1', 'BM 0500', 0.020),
+(3, '1', 'BZ 0020', 0.020),
+(4, '1', 'BN 0100', 0.200),
+(5, '1', 'BN 0110', 0.010),
+(6, '1', 'BM 0830', 0.001),
+(7, '1', 'BA 0030', 0.080),
+(8, '1', 'BA 0010', 0.300),
+(9, '1', 'BP 0010', 0.070),
+(10, '1', 'BC 1010', 0.420),
+(11, '1', 'BT 0130', 0.680),
+(12, '1', 'BC 0440', 0.090),
+(20, '2', 'BN 0100', 0.100),
+(19, '2', 'BC 1010', 0.100);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_bppb`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_bppb` (
+  `no_dok_bppb` char(15) NOT NULL,
+  `tgl_dok` date NOT NULL,
+  `kd_supplier` varchar(10) NOT NULL,
+  `no_sj` varchar(20) NOT NULL,
+  `tgl_sj` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_bppb`
+--
+
+INSERT INTO `tb_bppb` (`no_dok_bppb`, `tgl_dok`, `kd_supplier`, `no_sj`, `tgl_sj`) VALUES
+('RR/RM/001', '2014-01-12', 'SP5103', '112', '2014-01-12'),
+('RR/RM/002', '2014-01-15', 'SP5075', 'ttt', '2014-01-01'),
+('RR/RM/003', '2014-01-16', 'SP5115', '112', '2014-01-16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_bppb2`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_bppb2` (
+  `no_dok_bppb` char(20) NOT NULL,
+  `tgl_dok` date NOT NULL,
+  `kd_supplier` varchar(10) NOT NULL,
+  `no_sj` varchar(10) NOT NULL,
+  `tgl_sj` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_bppb2`
+--
+
+INSERT INTO `tb_bppb2` (`no_dok_bppb`, `tgl_dok`, `kd_supplier`, `no_sj`, `tgl_sj`) VALUES
+('RR/PM/001', '2014-01-16', 'SP5115', 'aa', '2014-01-18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_bppb_pm`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_bppb_pm` (
+  `no_dok_bppb` varchar(20) NOT NULL,
+  `kd_pm` varchar(20) NOT NULL,
+  `jml_pm_ter` double NOT NULL,
+  `no_po` varchar(20) NOT NULL,
+  `no_ca` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_bppb_pm`
+--
+
+INSERT INTO `tb_bppb_pm` (`no_dok_bppb`, `kd_pm`, `jml_pm_ter`, `no_po`, `no_ca`) VALUES
+('RR/PM/001', '21WC0300', 12, '', ''),
+('RR/PM/001', '21WC0400', 12, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_bppb_rm`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_bppb_rm` (
+  `no_dok_bppb` varchar(20) NOT NULL,
+  `kd_rm` varchar(20) NOT NULL,
+  `jml_rm_ter` float default '0',
+  `no_po` varchar(20) default NULL,
+  `no_ca` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_bppb_rm`
+--
+
+INSERT INTO `tb_bppb_rm` (`no_dok_bppb`, `kd_rm`, `jml_rm_ter`, `no_po`, `no_ca`) VALUES
+('RR/RM/001', 'BC 1010', 1, '', ''),
+('RR/RM/001', 'BN 0100', 1, '', ''),
+('RR/RM/001', 'BN 0110', 2, '', ''),
+('RR/RM/002', 'BC 1010', 1, '', ''),
+('RR/RM/002', 'BN 0100', 1, '', ''),
+('RR/RM/003', 'BT 0130', 1, '1', '1'),
+('RR/RM/003', 'BN 0100', 1, '1', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_cust`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_cust` (
+  `kd_cust` varchar(10) NOT NULL,
+  `nama_cust` varchar(30) NOT NULL,
+  `no_tlp` varchar(25) NOT NULL,
+  `ket` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_cust`
+--
+
+INSERT INTO `tb_cust` (`kd_cust`, `nama_cust`, `no_tlp`, `ket`) VALUES
+('5177', 'Adhika PW/Adi Cipta', '021-6554566', ''),
+('5222', 'Air Mancur', '021-8378363', ''),
+('5128', 'Alfa Aneka Niaga', '021-2383838', ''),
+('5230', 'Candika Wastu Pratama', '021-7777363', ''),
+('5023', 'Capriasi Multinasion', '021-3664536', ''),
+('5158', 'Eva Medica Mulia', '021-6664749', ''),
+('5019', 'Lignea Cosmetic', '021-2884746', ''),
+('5108', 'Kiddy Cuts Pratama Ind', '021-3937364', ''),
+('5122', 'Melia Nature Indonesia', '021-57839902', ''),
+('5161', 'Peter F. Saerang', '021-6637382', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_master_pm`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_master_pm` (
+  `kd_pm` char(10) NOT NULL,
+  `nama_pm` char(30) NOT NULL,
+  `satuan` char(3) NOT NULL,
+  `jns_pm` char(10) NOT NULL,
+  `harga_pm` float NOT NULL,
+  `stock` int(11) default '0'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_master_pm`
+--
+
+INSERT INTO `tb_master_pm` (`kd_pm`, `nama_pm`, `satuan`, `jns_pm`, `harga_pm`, `stock`) VALUES
+('20LN1200', 'NETTO TAPE EX.PT.LAUTAN KENCAN', 'PCS', 'TAPE', 0, 1111),
+('21WC0300', 'BOTTOM TRAY AUBEAU E/S', 'PCS', 'TRAY', 0, 1246),
+('20LP1900', 'PLAK BAND PLASTIK', 'PCS', 'TAPE', 0, 0),
+('21WK0300', 'GODET AUBEAU E/S 1.2G', 'PCS', 'GODET', 0, 0),
+('21KD0500', 'M. DOOS AUBEAU E/S', 'PCS', 'DOOS', 0, 0),
+('KJO 5102', 'ETIKET AUBEAU E/S 1.2 G ''GI''', 'PCS', 'STICKER', 0, 20),
+('21WC0400', 'COVER TRAY AUBEAU E/S', 'PCS', 'COVER', 0, 1245);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_master_rm`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_master_rm` (
+  `kd_rm` char(10) NOT NULL,
+  `nama_rm` varchar(30) NOT NULL,
+  `satuan` char(2) NOT NULL,
+  `jns_rm` varchar(20) NOT NULL,
+  `harga_rm` int(11) NOT NULL,
+  `stock` decimal(6,3) default '0.000'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_master_rm`
+--
+
+INSERT INTO `tb_master_rm` (`kd_rm`, `nama_rm`, `satuan`, `jns_rm`, `harga_rm`, `stock`) VALUES
+('BS 0132', 'ZP.TAL I STERIL', 'KG', 'ALKOHOL', 100889, 31.000),
+('BM 0500', 'ZP.TAL P', 'KG', 'ALKOHOL', 175780, 502.000),
+('BZ 0020', 'ZINC STEARAT', 'KG', 'ALKOHOL', 21275, 502.000),
+('BN 0100', 'NIPAGIN', 'KG', 'ALKOHOL', 72150, 515.010),
+('BN 0110', 'NIPASOL', 'KG', 'ALKOHOL', 76775, 524.000),
+('BM 0830', 'OL. MICRO', 'KG', 'ALKOHOL', 420875, 524.000),
+('BA 0030', 'PG. COKLAT LER-AR', 'KG', 'PEWARNA', 573500, 502.000),
+('BA 0010', 'PG. HITAM LER-BF', 'KG', 'PEWARNA', 251600, 532.000),
+('BP 0010', 'PG. COKLAT P-AO', 'KG', 'PEWARNA', 206553, 521.000),
+('BC 1010', 'CERAPHYL 847', 'KG', 'ALKOHOL', 163725, 19.500),
+('BT 0130', 'PG. PUTIH PE-BZ', 'KG', 'PEWARNA', 351230, 540.300),
+('BC 0440', 'PG. COKLAT PE-CQ', 'KG', 'PEWARNA', 707625, 511.000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_mc_pm`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_mc_pm` (
+  `kd_mc_pm` varchar(15) NOT NULL,
+  `tgl_cetak` date NOT NULL,
+  `kd_mc_rm` varchar(15) NOT NULL,
+  `kd_produk` varchar(15) NOT NULL,
+  `jml_produk` float NOT NULL,
+  `kd_mesin` varchar(15) NOT NULL,
+  `jml_mesin` int(4) NOT NULL,
+  `kd_pekerja1` varchar(15) NOT NULL,
+  `jml_pekerja1` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_mc_pm`
+--
+
+INSERT INTO `tb_mc_pm` (`kd_mc_pm`, `tgl_cetak`, `kd_mc_rm`, `kd_produk`, `jml_produk`, `kd_mesin`, `jml_mesin`, `kd_pekerja1`, `jml_pekerja1`) VALUES
+('MCPM-001', '2014-01-16', 'MCRM-001', 'aa', 500, 'CDF42MP', 1, 'MAN01MP', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_mc_pm_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_mc_pm_detail` (
+  `kd_mc_pm` varchar(15) NOT NULL,
+  `kd_pm` varchar(15) NOT NULL,
+  `jml_pm` int(11) NOT NULL,
+  `subtotal` double NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_mc_pm_detail`
+--
+
+INSERT INTO `tb_mc_pm_detail` (`kd_mc_pm`, `kd_pm`, `jml_pm`, `subtotal`) VALUES
+('MCPM-001', '20LP1900', 1000, 0),
+('MCPM-001', '21WC0300', 500, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_mc_rm`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_mc_rm` (
+  `kd_mc_rm` varchar(15) NOT NULL,
+  `tgl_cetak` date NOT NULL,
+  `kd_produk` varchar(15) NOT NULL,
+  `jml_produk` float NOT NULL,
+  `kd_mesin` varchar(15) NOT NULL,
+  `jml_mesin` int(11) NOT NULL,
+  `kd_pekerja1` varchar(15) NOT NULL,
+  `jml_pekerja1` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_mc_rm`
+--
+
+INSERT INTO `tb_mc_rm` (`kd_mc_rm`, `tgl_cetak`, `kd_produk`, `jml_produk`, `kd_mesin`, `jml_mesin`, `kd_pekerja1`, `jml_pekerja1`) VALUES
+('MCRM-001', '2014-01-16', '122312', 1, 'CDF01MK', 2, 'MAN01MP', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_mc_rm_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_mc_rm_detail` (
+  `kd_mc_rm` varchar(15) NOT NULL,
+  `kd_rm` varchar(10) NOT NULL,
+  `jml_rm` double NOT NULL,
+  `subtotal` double NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_mc_rm_detail`
+--
+
+INSERT INTO `tb_mc_rm_detail` (`kd_mc_rm`, `kd_rm`, `jml_rm`, `subtotal`) VALUES
+('MCRM-001', 'BN 0100', 0.1, 7215),
+('MCRM-001', 'BC 1010', 0.1, 16372);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_mesin`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_mesin` (
+  `kd_mesin` varchar(15) NOT NULL,
+  `nama_mesin` varchar(30) NOT NULL,
+  `harga_satuan` float NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_mesin`
+--
+
+INSERT INTO `tb_mesin` (`kd_mesin`, `nama_mesin`, `harga_satuan`) VALUES
+('CDF01MK', 'TINFA', 2258),
+('CDF42MP', 'ALPIN COLOPEX MILL', 5600);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pekerja`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_pekerja` (
+  `kd_pekerja` varchar(15) NOT NULL,
+  `nama_pekerja` varchar(15) NOT NULL,
+  `jenis_pekerja` varchar(20) NOT NULL,
+  `harga_satuan` float NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pekerja`
+--
+
+INSERT INTO `tb_pekerja` (`kd_pekerja`, `nama_pekerja`, `jenis_pekerja`, `harga_satuan`) VALUES
+('MAN01MP', 'DL PROSES', 'DL PROSES', 13390),
+('MAN02MP', 'FOH PROSES', 'FOH PROSES', 25750);
+
+--
+-- Table structure for table `tb_pppm`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_pppm` (
+  `no_dok_pppm` varchar(10) NOT NULL,
+  `tgl_pppm` date NOT NULL,
+  `kd_mc_pm` varchar(20) NOT NULL,
+  `delivery_awal` date NOT NULL,
+  `delivery_akhir` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pppm`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pppm_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_pppm_detail` (
+  `no_dok_pppm` varchar(20) NOT NULL,
+  `kd_pm` varchar(20) NOT NULL,
+  `jml` double NOT NULL,
+  `subtotal` float NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pppm_detail`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pprm`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_pprm` (
+  `no_dok_pprm` varchar(10) NOT NULL,
+  `tgl_pprm` date NOT NULL,
+  `kd_mc_rm` varchar(20) NOT NULL,
+  `delivery_awal` date NOT NULL,
+  `delivery_akhir` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pprm`
+--
+
+INSERT INTO `tb_pprm` (`no_dok_pprm`, `tgl_pprm`, `kd_mc_rm`, `delivery_awal`, `delivery_akhir`) VALUES
+('PRM-001', '2014-01-15', 'MCRM-004', '2014-01-15', '2014-01-31'),
+('PRM-002', '2014-01-16', 'MCRM-005', '2014-01-16', '2014-01-18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pprm_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_pprm_detail` (
+  `no_dok_pprm` varchar(20) NOT NULL,
+  `kd_rm` varchar(20) NOT NULL,
+  `jml` double NOT NULL,
+  `subtotal` float NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pprm_detail`
+--
+
+INSERT INTO `tb_pprm_detail` (`no_dok_pprm`, `kd_rm`, `jml`, `subtotal`) VALUES
+('PRM-001', 'BS 0132', 0.18, 18160),
+('PRM-001', 'BM 0500', 0.12, 21093),
+('PRM-001', 'BZ 0020', 0.12, 2553),
+('PRM-001', 'BN 0100', 1.2, 86580),
+('PRM-001', 'BN 0110', 0.06, 4606),
+('PRM-001', 'BM 0830', 0.006, 2525),
+('PRM-001', 'BA 0030', 0.48, 275280),
+('PRM-001', 'BA 0010', 1.8, 452879),
+('PRM-001', 'BP 0010', 0.42, 86752),
+('PRM-001', 'BC 1010', 2.52, 412587),
+('PRM-001', 'BT 0130', 4.08, 1.43302e+006),
+('PRM-001', 'BC 0440', 0.54, 382117),
+('PRM-001', 'BS 0132', 0.06, 6053),
+('PRM-001', 'BM 0500', 0.04, 7031),
+('PRM-001', 'BZ 0020', 0.04, 851),
+('PRM-001', 'BN 0100', 0.4, 28860),
+('PRM-001', 'BN 0110', 0.02, 1535),
+('PRM-001', 'BM 0830', 0.002, 841),
+('PRM-001', 'BA 0030', 0.16, 91760),
+('PRM-001', 'BA 0010', 0.6, 150960),
+('PRM-001', 'BP 0010', 0.14, 28917),
+('PRM-001', 'BC 1010', 0.84, 137529),
+('PRM-001', 'BT 0130', 1.36, 477672),
+('PRM-001', 'BC 0440', 0.18, 127372),
+('PRM-002', 'BS 0132', 0.06, 6053),
+('PRM-002', 'BM 0500', 0.04, 7031),
+('PRM-002', 'BZ 0020', 0.04, 851),
+('PRM-002', 'BN 0100', 0.4, 28860),
+('PRM-002', 'BN 0110', 0.02, 1535),
+('PRM-002', 'BM 0830', 0.002, 841),
+('PRM-002', 'BA 0030', 0.16, 91760),
+('PRM-002', 'BA 0010', 0.6, 150960),
+('PRM-002', 'BP 0010', 0.14, 28917),
+('PRM-002', 'BC 1010', 0.84, 137529),
+('PRM-002', 'BT 0130', 1.36, 477672),
+('PRM-002', 'BC 0440', 0.18, 127372);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_produk`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_produk` (
+  `id_bom` char(10) NOT NULL,
+  `kd_produk` char(15) NOT NULL,
+  `nama_produk` varchar(50) NOT NULL,
+  `satuan` varchar(3) NOT NULL,
+  `jns_produk` varchar(10) NOT NULL,
+  `proses` varchar(4) NOT NULL,
+  `kd_mesin` char(15) NOT NULL,
+  `kd_pekerja1` char(15) NOT NULL,
+  `jml_mesin` int(2) NOT NULL,
+  `jml_pekerja1` int(2) NOT NULL,
+  `wadah` decimal(5,3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_produk`
+--
+
+INSERT INTO `tb_produk` (`id_bom`, `kd_produk`, `nama_produk`, `satuan`, `jns_produk`, `proses`, `kd_mesin`, `kd_pekerja1`, `jml_mesin`, `jml_pekerja1`, `wadah`) VALUES
+('1', '5543CWBE0610', 'CWP AUBEAU ES 06 DARK BROWN 1.2G', 'PCS', 'EYE SHADOW', 'FG', 'CDF42MP', 'MAN01MP', 30, 103, 1.200),
+('2', 'aa', 'bb', 'PCS', 'FRAGRANCE', 'FG', 'CDF42MP', 'MAN01MP', 1, 1, 2.000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_produk_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_produk_detail` (
+  `no_urut` int(11) NOT NULL auto_increment,
+  `id_bom` varchar(10) NOT NULL,
+  `kd_pm` varchar(10) NOT NULL,
+  `qty` float NOT NULL,
+  PRIMARY KEY  (`no_urut`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `tb_produk_detail`
+--
+
+INSERT INTO `tb_produk_detail` (`no_urut`, `id_bom`, `kd_pm`, `qty`) VALUES
+(1, '1', '20LN1200', 0.0075),
+(2, '1', '21WC0300', 1),
+(3, '1', '20LP1900', 0.0075),
+(4, '1', '21WK0300', 1),
+(5, '1', '21KD0500', 0.0005),
+(6, '1', 'KJO 5102', 0.0005),
+(7, '1', '21WC0400', 1),
+(11, '2', '20LP1900', 2),
+(10, '2', '21WC0300', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_supplier`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_supplier` (
+  `kd_supplier` varchar(20) NOT NULL,
+  `nama_supplier` varchar(35) NOT NULL,
+  `no_tlp` varchar(15) NOT NULL,
+  `ket` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_supplier`
+--
+
+INSERT INTO `tb_supplier` (`kd_supplier`, `nama_supplier`, `no_tlp`, `ket`) VALUES
+('SP5075', 'Indomarco Nusatrada', '021-9984435', ''),
+('SP5124', 'Kenko Surya Gemilang', '021-2888736', ''),
+('SP5224', 'Laros Inter Cosmoport', '021-7902001', ''),
+('SP5102', 'Metrolis Citra', '021-5541526', ''),
+('SP5103', 'Sejahtera Mandiri ', '021-8966566', ''),
+('SP5115', 'Sembada Karismatama', '021-9087762', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_user`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_user` (
+  `kd_user` varchar(10) NOT NULL,
+  `nama_user` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `hak_akses` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_user`
+--
+
+INSERT INTO `tb_user` (`kd_user`, `nama_user`, `password`, `hak_akses`) VALUES
+('US02', 'Warehouse', 'Warehouse', 'Warehouse'),
+('US01', 'admin', 'admin', 'Admin'),
+('US03', 'PPIC', 'PPIC', 'PPIC');

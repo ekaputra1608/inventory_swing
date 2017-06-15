@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="935" pageHeight="612" orientation="Landscape" columnWidth="895" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="95acd9c1-bec9-4a55-ae8e-2f4073a61703">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tgl1" class="java.lang.String"/>
+	<parameter name="tgl2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     tb_mc_pm.`kd_mc_pm` AS tb_mc_pm_kd_mc_pm,
+     tb_mc_pm.`tgl_cetak` AS tb_mc_pm_tgl_cetak,
+     tb_mc_pm.`kd_mc_rm` AS tb_mc_pm_kd_mc_rm,
+     tb_mc_pm.`kd_produk` AS tb_mc_pm_kd_produk,
+     tb_mc_pm.`jml_produk` AS tb_mc_pm_jml_produk,
+     tb_mc_pm_detail.`kd_pm` AS tb_mc_pm_detail_kd_pm,
+     tb_mc_pm_detail.`jml_pm` AS tb_mc_pm_detail_jml_pm,
+     tb_mc_pm_detail.`subtotal` AS tb_mc_pm_detail_subtotal,
+     tb_master_pm.`nama_pm` AS tb_master_pm_nama_pm,
+     tb_master_pm.`harga_pm` AS tb_master_pm_harga_pm,
+     tb_produk.`nama_produk` AS tb_produk_nama_produk
+FROM
+     `tb_mc_pm_detail` tb_mc_pm_detail INNER JOIN `tb_mc_pm` tb_mc_pm ON tb_mc_pm_detail.`kd_mc_pm` = tb_mc_pm.`kd_mc_pm`
+     INNER JOIN `tb_master_pm` tb_master_pm ON tb_mc_pm_detail.`kd_pm` = tb_master_pm.`kd_pm`
+     INNER JOIN `tb_produk` tb_produk ON tb_mc_pm.`kd_produk` = tb_produk.`kd_produk`
+WHERE
+     tb_mc_pm.`tgl_cetak` >= $P{tgl1}
+     and tb_mc_pm.`tgl_cetak` <= $P{tgl2}]]>
+	</queryString>
+	<field name="tb_mc_pm_kd_mc_pm" class="java.lang.String"/>
+	<field name="tb_mc_pm_tgl_cetak" class="java.sql.Date"/>
+	<field name="tb_mc_pm_kd_mc_rm" class="java.lang.String"/>
+	<field name="tb_mc_pm_kd_produk" class="java.lang.String"/>
+	<field name="tb_mc_pm_jml_produk" class="java.lang.Float"/>
+	<field name="tb_mc_pm_detail_kd_pm" class="java.lang.String"/>
+	<field name="tb_mc_pm_detail_jml_pm" class="java.lang.Double"/>
+	<field name="tb_mc_pm_detail_subtotal" class="java.lang.Double"/>
+	<field name="tb_master_pm_nama_pm" class="java.lang.String"/>
+	<field name="tb_master_pm_harga_pm" class="java.lang.Float"/>
+	<field name="tb_produk_nama_produk" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7298a3c2-03ed-4e13-af82-bede5e9e529d" x="0" y="0" width="895" height="38"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Master Composition Packaging Material (FG)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2d262bc5-87d0-4a44-93d0-03ede55c0dc3" x="0" y="0" width="77" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. MCPM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="71afda6a-f1a0-4d09-8834-2a73a7f6e395" x="77" y="0" width="65" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tgl.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cbf9c851-f1e8-48b1-af48-197e9b4a52f0" x="218" y="0" width="83" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5c30b14a-ed78-4839-88bb-c32a5d52792b" x="301" y="0" width="72" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jml ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="39331bf3-bc17-4280-a444-2f7f51433af3" x="373" y="0" width="86" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode PM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="824e3a29-8170-4ab9-bb42-65ab5f6849e8" x="459" y="0" width="274" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama PM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b597da97-a92a-40ce-bdad-08339e7e4fba" x="733" y="0" width="59" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jml Keb.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="31847ee3-edd2-4a60-a8e3-c2c6013e2218" x="839" y="0" width="56" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b597da97-a92a-40ce-bdad-08339e7e4fba" x="792" y="0" width="47" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Harga Sat.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cbf9c851-f1e8-48b1-af48-197e9b4a52f0" x="142" y="0" width="76" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. MCRM]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b4cc54b6-8ee6-486f-a117-42d9bf73b16a" x="0" y="0" width="77" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_pm_kd_mc_pm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e78c12b9-1520-474a-ab52-9d623a1605dd" x="77" y="0" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_pm_tgl_cetak}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a5f75ad6-8034-4e7c-a655-a485fb66ca0f" x="142" y="0" width="76" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_pm_kd_mc_rm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="308c02c4-71df-467a-aced-c2f9070c06c4" x="218" y="0" width="83" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_pm_kd_produk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a4840ac1-8311-4083-a52b-332c27bcf3c4" x="301" y="0" width="72" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_pm_jml_produk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cccfe967-2302-4336-b124-d03dbb7008eb" x="373" y="0" width="86" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_pm_detail_kd_pm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c2463d60-f9d5-4049-a210-4df6037efee2" x="459" y="0" width="274" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_master_pm_nama_pm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3f7627e9-931c-40cb-a2c4-51b4da1757d4" x="733" y="0" width="59" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_pm_detail_jml_pm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="da00be5a-1fb3-4fa0-a952-ec81e4888fe7" x="792" y="0" width="47" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_master_pm_harga_pm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f23d97b3-27e7-4fe1-b438-7179c2cef94e" x="839" y="0" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_mc_pm_detail_subtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="106" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

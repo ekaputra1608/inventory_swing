@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="935" pageHeight="612" orientation="Landscape" columnWidth="895" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="95acd9c1-bec9-4a55-ae8e-2f4073a61703">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="135"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tgl3" class="java.lang.String"/>
+	<parameter name="tgl4" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     tb_bppb.`no_dok_bppb` AS tb_bppb_no_dok_bppb,
+     tb_bppb.`tgl_dok` AS tb_bppb_tgl_dok,
+     tb_bppb.`kd_supplier` AS tb_bppb_kd_supplier,
+     tb_bppb.`no_sj` AS tb_bppb_no_sj,
+     tb_bppb.`tgl_sj` AS tb_bppb_tgl_sj,
+     tb_bppb_rm.`kd_rm` AS tb_bppb_rm_kd_rm,
+     tb_bppb_rm.`jml_rm_ter` AS tb_bppb_rm_jml_rm_ter,
+     tb_bppb_rm.`no_po` AS tb_bppb_rm_no_po,
+     tb_bppb_rm.`no_ca` AS tb_bppb_rm_no_ca,
+     tb_master_rm.`nama_rm` AS tb_master_rm_nama_rm,
+     tb_supplier.`nama_supplier` AS tb_supplier_nama_supplier
+FROM
+     `tb_bppb_rm` tb_bppb_rm INNER JOIN `tb_bppb` tb_bppb ON tb_bppb_rm.`no_dok_bppb` = tb_bppb.`no_dok_bppb`
+     INNER JOIN `tb_master_rm` tb_master_rm ON tb_bppb_rm.`kd_rm` = tb_master_rm.`kd_rm`
+     INNER JOIN `tb_supplier` tb_supplier ON tb_bppb.`kd_supplier` = tb_supplier.`kd_supplier`
+WHERE
+     tb_bppb.`tgl_dok` >= $P{tgl3}
+     and tb_bppb.`tgl_dok` <= $P{tgl4}]]>
+	</queryString>
+	<field name="tb_bppb_no_dok_bppb" class="java.lang.String"/>
+	<field name="tb_bppb_tgl_dok" class="java.sql.Date"/>
+	<field name="tb_bppb_kd_supplier" class="java.lang.String"/>
+	<field name="tb_bppb_no_sj" class="java.lang.String"/>
+	<field name="tb_bppb_tgl_sj" class="java.sql.Date"/>
+	<field name="tb_bppb_rm_kd_rm" class="java.lang.String"/>
+	<field name="tb_bppb_rm_jml_rm_ter" class="java.lang.Float"/>
+	<field name="tb_bppb_rm_no_po" class="java.lang.String"/>
+	<field name="tb_bppb_rm_no_ca" class="java.lang.String"/>
+	<field name="tb_master_rm_nama_rm" class="java.lang.String"/>
+	<field name="tb_supplier_nama_supplier" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7298a3c2-03ed-4e13-af82-bede5e9e529d" x="0" y="0" width="895" height="38"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan BPPB Raw Material]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2d262bc5-87d0-4a44-93d0-03ede55c0dc3" x="0" y="0" width="77" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. BPPB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="71afda6a-f1a0-4d09-8834-2a73a7f6e395" x="77" y="0" width="65" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tgl.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cbf9c851-f1e8-48b1-af48-197e9b4a52f0" x="142" y="0" width="67" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5c30b14a-ed78-4839-88bb-c32a5d52792b" x="209" y="0" width="52" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. SJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a025f7ee-5e45-44a4-969e-a38ca6a1501f" x="261" y="0" width="96" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tgl.SJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="39331bf3-bc17-4280-a444-2f7f51433af3" x="357" y="0" width="55" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="824e3a29-8170-4ab9-bb42-65ab5f6849e8" x="412" y="0" width="245" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b597da97-a92a-40ce-bdad-08339e7e4fba" x="657" y="0" width="38" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jml Terima]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="31847ee3-edd2-4a60-a8e3-c2c6013e2218" x="695" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. PO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5dc73c14-6da1-4cd7-a378-514638e9e784" x="795" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. CA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="18fee7d1-8426-4575-b446-6891c719ef8b" x="0" y="0" width="77" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_bppb_no_dok_bppb}]]></textFieldExpression>
+			</textField>
+			<textField pattern="d/M/yyyy">
+				<reportElement uuid="51a7c75d-ce49-4f3b-a344-6727e1e8a79e" x="77" y="0" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_bppb_tgl_dok}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="66a9cbc0-f07a-426c-b6c7-4600e4430cbc" x="209" y="0" width="52" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_bppb_no_sj}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="88ece6ce-9d59-4cda-b1af-c1c0e4690721" x="261" y="0" width="96" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tb_bppb_tgl_sj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3bea2847-abfa-433d-a75a-ba5497668b0d" x="357" y="0" width="55" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{tb_bppb_rm_kd_rm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="95dda276-8dd5-4eac-915f-27728bbf6afe" x="412" y="0" width="245" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_master_rm_nama_rm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="415afa8f-f0a8-45f1-b3b0-23364d3364d2" x="657" y="0" width="38" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_bppb_rm_jml_rm_ter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d10d3d6f-f67c-468d-9c6e-e6660803ba85" x="795" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_bppb_rm_no_ca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e5d73ad9-807a-46c1-95b7-a5cd05150409" x="695" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_bppb_rm_no_po}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d7fc7086-a450-4026-b960-a8d2316a277f" x="142" y="0" width="67" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_supplier_nama_supplier}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="106" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a3601bab-b9d6-494c-9c7d-6d4df9990bf7" x="847" y="86" width="48" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="71db4662-629c-40ab-814b-aa747003158b" x="0" y="24" width="895" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

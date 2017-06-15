@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_pm" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c8ce1f1-e377-4ca3-a207-7718418013e5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     tb_master_pm.`kd_pm` AS tb_master_pm_kd_pm,
+     tb_master_pm.`nama_pm` AS tb_master_pm_nama_pm,
+     tb_master_pm.`satuan` AS tb_master_pm_satuan,
+     tb_master_pm.`jns_pm` AS tb_master_pm_jns_pm,
+     tb_master_pm.`harga_pm` AS tb_master_pm_harga_pm,
+     tb_master_pm.`stock` AS tb_master_pm_stock
+FROM
+     `tb_master_pm` tb_master_pm]]>
+	</queryString>
+	<field name="tb_master_pm_kd_pm" class="java.lang.String"/>
+	<field name="tb_master_pm_nama_pm" class="java.lang.String"/>
+	<field name="tb_master_pm_satuan" class="java.lang.String"/>
+	<field name="tb_master_pm_jns_pm" class="java.lang.String"/>
+	<field name="tb_master_pm_harga_pm" class="java.lang.Float"/>
+	<field name="tb_master_pm_stock" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="83b54266-b219-4d89-babc-a3c79289bbb6" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="62aeffeb-86b1-483f-b63a-93761bc35bf3" x="20" y="20" width="333" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Packaging Material]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="174dbcfa-ee8a-4b7c-ad5b-e52818eee401" x="395" y="43" width="180" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[PT Cedefindo]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement uuid="7fb9528b-582a-455a-9851-6ac5e483cd4f" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+			</line>
+			<staticText>
+				<reportElement uuid="4e640c8f-2e0c-46c3-a7b6-9e0f0006a944" mode="Opaque" x="0" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode PM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="036cc09e-c0f0-4225-89c3-80a5510713dd" mode="Opaque" x="92" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama PM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d119c251-18c6-49b7-8c49-b58477d9ad56" mode="Opaque" x="184" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6223267d-5000-48de-b9d5-bea43f3c7bd0" mode="Opaque" x="276" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jenis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="672e3429-5ba4-4b79-a888-f8ab13d46271" mode="Opaque" x="368" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Harga PM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ffae5e6f-3b9c-458b-9dac-9b1319eca28d" mode="Opaque" x="460" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="3f0b909f-598d-47ab-a355-31c1cc13663f" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="ba42c386-5d7c-40ea-ba71-be86cf927c02" x="0" y="0" width="92" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_master_pm_kd_pm}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="8188b5ea-c13b-4286-9a6c-d8c2b7986217" x="92" y="0" width="92" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_master_pm_nama_pm}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="9a7d99af-0607-45d5-9ba0-c919f6fbd3d6" x="184" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_master_pm_satuan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="ee09af85-110a-45f7-98da-5c7f541457af" x="276" y="0" width="92" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_master_pm_jns_pm}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="b18701e4-53b6-4460-aedd-5d2d18549419" x="368" y="0" width="92" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_master_pm_harga_pm}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="06271ed5-3733-4597-92f3-cc90ad260431" x="460" y="0" width="92" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_master_pm_stock}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="87f61897-5644-454d-8cb9-1c958935c785" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="11116e1f-6d24-4a01-9419-93135cd53aee" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="05e34e63-50c5-468c-9db3-c461e5faaf62" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

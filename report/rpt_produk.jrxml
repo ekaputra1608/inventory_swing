@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_produk" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a3132b25-76ed-413d-9018-ccaf58779178">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     tb_produk.`kd_produk` AS tb_produk_kd_produk,
+     tb_produk.`nama_produk` AS tb_produk_nama_produk,
+     tb_produk.`satuan` AS tb_produk_satuan,
+     tb_produk.`jns_produk` AS tb_produk_jns_produk,
+     tb_produk.`stok` AS tb_produk_stok
+FROM
+     `tb_produk` tb_produk]]>
+	</queryString>
+	<field name="tb_produk_kd_produk" class="java.lang.String"/>
+	<field name="tb_produk_nama_produk" class="java.lang.String"/>
+	<field name="tb_produk_satuan" class="java.lang.String"/>
+	<field name="tb_produk_jns_produk" class="java.lang.String"/>
+	<field name="tb_produk_stok" class="java.lang.Double"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="f0d3c091-ba7b-4b03-81ef-be8ff92076c8" mode="Opaque" x="0" y="-20" width="575" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="2b49c180-e739-465f-ab92-c7265d87f372" x="395" y="43" width="180" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[PT Cedefindo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="2b49c180-e739-465f-ab92-c7265d87f372" x="0" y="32" width="229" height="31" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="24" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data Master Produk]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement uuid="80f3620f-6709-4d83-9e50-8e569a3c820b" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+			</line>
+			<staticText>
+				<reportElement uuid="0989a51f-9481-4a66-9b93-60e6fbebf3d2" mode="Opaque" x="0" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6937c10b-0139-4d7d-b4c4-5d2ebed9139e" mode="Opaque" x="111" y="0" width="157" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="986ff808-75e7-4c01-a062-4e658bea51f7" mode="Opaque" x="268" y="0" width="80" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dff388b2-9007-43ae-95c1-22a391b982d9" mode="Opaque" x="348" y="0" width="96" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jenis ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b202d379-0fb8-460c-83e0-7723dfa9181e" mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="2cb0a2d9-bbd8-45fd-bf15-7bc15764eeb0" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="ac8cb460-4d5f-4959-bafe-74626238dd70" x="0" y="0" width="111" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_produk_kd_produk}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="1396c7eb-6c10-4502-849c-88cb366f9ab2" x="111" y="0" width="157" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_produk_nama_produk}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="d960a16b-3b9d-428d-8d3c-858aeaeeb6bb" x="268" y="0" width="80" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_produk_satuan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="688ada07-9ab5-4fa7-a18b-754c5c7073db" x="348" y="0" width="96" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_produk_jns_produk}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="c4188b13-162f-4289-8a29-27f4346131b1" x="444" y="0" width="111" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_produk_stok}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="a8cec49e-a690-489e-b790-4b5419beffe8" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="cc8ef684-4ad8-4e94-993d-df32b284d472" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="29126e7b-704d-479e-a1c2-10dc111f5818" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="935" pageHeight="612" orientation="Landscape" columnWidth="895" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="95acd9c1-bec9-4a55-ae8e-2f4073a61703">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tgl1" class="java.lang.String"/>
+	<parameter name="tgl2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     tb_master_pm.`nama_pm` AS tb_master_pm_nama_pm,
+     tb_pppm.`no_dok_pppm` AS tb_pppm_no_dok_pppm,
+     tb_pppm.`tgl_pppm` AS tb_pppm_tgl_pppm,
+     tb_pppm.`kd_mc_pm` AS tb_pppm_kd_mc_pm,
+     tb_pppm.`delivery_awal` AS tb_pppm_delivery_awal,
+     tb_pppm.`delivery_akhir` AS tb_pppm_delivery_akhir,
+     tb_pppm_detail.`kd_pm` AS tb_pppm_detail_kd_pm,
+     tb_pppm_detail.`jml` AS tb_pppm_detail_jml,
+     tb_pppm_detail.`subtotal` AS tb_pppm_detail_subtotal,
+     tb_master_pm.`satuan` AS tb_master_pm_satuan
+FROM
+     `tb_pppm_detail` tb_pppm_detail INNER JOIN `tb_pppm` tb_pppm ON tb_pppm_detail.`no_dok_pppm` = tb_pppm.`no_dok_pppm`
+     INNER JOIN `tb_master_pm` tb_master_pm ON tb_pppm_detail.`kd_pm` = tb_master_pm.`kd_pm`
+WHERE
+     tb_pppm.`tgl_pppm` >= $P{tgl1}
+     and tb_pppm.`tgl_pppm` <= $P{tgl2}]]>
+	</queryString>
+	<field name="tb_master_pm_nama_pm" class="java.lang.String"/>
+	<field name="tb_pppm_no_dok_pppm" class="java.lang.String"/>
+	<field name="tb_pppm_tgl_pppm" class="java.sql.Date"/>
+	<field name="tb_pppm_kd_mc_pm" class="java.lang.String"/>
+	<field name="tb_pppm_delivery_awal" class="java.sql.Date"/>
+	<field name="tb_pppm_delivery_akhir" class="java.sql.Date"/>
+	<field name="tb_pppm_detail_kd_pm" class="java.lang.String"/>
+	<field name="tb_pppm_detail_jml" class="java.lang.Double"/>
+	<field name="tb_pppm_detail_subtotal" class="java.lang.Float"/>
+	<field name="tb_master_pm_satuan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7298a3c2-03ed-4e13-af82-bede5e9e529d" x="0" y="0" width="895" height="38"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Permintaan Pembelian Packaging Material]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2d262bc5-87d0-4a44-93d0-03ede55c0dc3" x="0" y="0" width="87" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. PPPM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="71afda6a-f1a0-4d09-8834-2a73a7f6e395" x="87" y="0" width="65" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tgl.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cbf9c851-f1e8-48b1-af48-197e9b4a52f0" x="152" y="0" width="79" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode MC Bulk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5c30b14a-ed78-4839-88bb-c32a5d52792b" x="231" y="0" width="74" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[del. awal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a025f7ee-5e45-44a4-969e-a38ca6a1501f" x="305" y="0" width="96" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[del. akhir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="39331bf3-bc17-4280-a444-2f7f51433af3" x="401" y="0" width="83" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode PM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="824e3a29-8170-4ab9-bb42-65ab5f6849e8" x="484" y="0" width="301" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama PM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b597da97-a92a-40ce-bdad-08339e7e4fba" x="785" y="0" width="110" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jml Permintaan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="95e5bcdb-9613-4cce-a21f-5e094454b1a0" x="0" y="0" width="87" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_pppm_no_dok_pppm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="de616c4f-d058-4eae-b77c-70f2a63c7677" x="87" y="0" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_pppm_tgl_pppm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="09ad4bdb-4de1-4a1e-8751-041c7439902e" x="152" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_pppm_kd_mc_pm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="639593df-7d48-4913-9ee3-8b705611e9e5" x="231" y="0" width="74" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_pppm_delivery_awal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8cb248f1-6b82-4ab0-bfc2-77c19855d686" x="305" y="0" width="96" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_pppm_delivery_akhir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6257088c-aa22-43d4-ba80-3df92d32d2ae" x="401" y="0" width="83" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_pppm_detail_kd_pm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="94849896-5c3e-42ba-a54e-7af02ff59005" x="484" y="0" width="301" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_master_pm_nama_pm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6e2d8510-e361-4ff4-b472-a86751bbc9f8" x="785" y="0" width="110" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tb_pppm_detail_jml}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="106" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a3601bab-b9d6-494c-9c7d-6d4df9990bf7" x="847" y="86" width="48" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="71db4662-629c-40ab-814b-aa747003158b" x="0" y="24" width="895" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
